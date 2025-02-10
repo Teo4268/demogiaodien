@@ -26,9 +26,6 @@
       margin-bottom: 15px;
       transition: 0.2s;
     }
-    .song-card:hover {
-      transform: scale(1.02);
-    }
     .progress-bar {
       width: 100%;
       height: 6px;
@@ -41,7 +38,7 @@
       background: #ff4b2b;
       width: 0%;
     }
-    .play-btn, .volume-btn {
+    .play-btn {
       background-color: #ff416c;
       color: white;
       border: none;
@@ -50,10 +47,18 @@
       height: 40px;
       font-size: 18px;
       cursor: pointer;
-      transition: 0.2s;
     }
-    .play-btn:hover, .volume-btn:hover {
-      background-color: #ff4b2b;
+    .volume-widget {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      background: #1e1e1e;
+      padding: 10px 15px;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
     }
     .volume-slider {
       width: 100px;
@@ -72,7 +77,6 @@
           <span class="time">00:00 / 00:00</span>
         </div>
         <button class="play-btn"><i class="fas fa-play"></i></button>
-        <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="1">
         <audio>
           <source src="https://military-merrie-tranteo777-3c17b2c8.koyeb.app/uploads/NOI%20NAY%20CO%20ANH%20VAVH.mp3" type="audio/mpeg">
         </audio>
@@ -80,9 +84,16 @@
     </div>
   </div>
 
+  <!-- Widget Âm Lượng -->
+  <div class="volume-widget">
+    <i class="fas fa-volume-up"></i>
+    <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="1">
+  </div>
+
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const songs = document.querySelectorAll(".song-card");
+      const volumeSlider = document.querySelector(".volume-slider");
 
       songs.forEach((song) => {
         const playBtn = song.querySelector(".play-btn");
@@ -90,7 +101,6 @@
         const progressBar = song.querySelector(".progress-bar");
         const progress = song.querySelector(".progress");
         const timeDisplay = song.querySelector(".time");
-        const volumeSlider = song.querySelector(".volume-slider");
 
         playBtn.addEventListener("click", () => {
           if (audio.paused) {
@@ -108,7 +118,6 @@
         audio.addEventListener("timeupdate", () => {
           const percent = (audio.currentTime / audio.duration) * 100;
           progress.style.width = percent + "%";
-
           let currentTime = formatTime(audio.currentTime);
           let duration = formatTime(audio.duration);
           timeDisplay.textContent = `${currentTime} / ${duration}`;
@@ -120,16 +129,16 @@
           audio.currentTime = (clickX / rect.width) * audio.duration;
         });
 
-        volumeSlider.addEventListener("input", (e) => {
-          audio.volume = e.target.value;
-        });
-
         function formatTime(seconds) {
           let h = Math.floor(seconds / 3600);
           let m = Math.floor((seconds % 3600) / 60);
           let s = Math.floor(seconds % 60);
           return `${h}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
         }
+      });
+
+      volumeSlider.addEventListener("input", (e) => {
+        document.querySelectorAll("audio").forEach(a => a.volume = e.target.value);
       });
     });
   </script>
