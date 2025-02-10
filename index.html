@@ -3,10 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kho Nhạc 🎵</title>
+  <title>Nghe Nhạc</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       background-color: #121212;
@@ -14,7 +13,7 @@
       font-family: 'Roboto', sans-serif;
     }
     .container {
-      max-width: 600px;
+      max-width: 800px;
       margin: auto;
       padding: 20px;
     }
@@ -23,27 +22,23 @@
       align-items: center;
       background: #1e1e1e;
       border-radius: 12px;
-      padding: 10px;
+      padding: 15px;
       margin-bottom: 15px;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
+      justify-content: space-between;
     }
     .song-card:hover {
       transform: scale(1.02);
       box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
     }
-    .song-img {
-      width: 60px;
-      height: 60px;
-      border-radius: 10px;
-      margin-right: 10px;
-    }
     .progress-bar {
-      width: 100%;
-      height: 5px;
-      background: rgba(255, 255, 255, 0.2);
+      flex: 1;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.3);
       border-radius: 5px;
       overflow: hidden;
       cursor: pointer;
+      margin: 0 10px;
     }
     .progress {
       height: 100%;
@@ -55,8 +50,8 @@
       color: white;
       border: none;
       border-radius: 50%;
-      width: 40px;
-      height: 40px;
+      width: 45px;
+      height: 45px;
       font-size: 18px;
       cursor: pointer;
       transition: background 0.2s;
@@ -64,21 +59,27 @@
     .play-btn:hover {
       background-color: #ff4b2b;
     }
+    .time {
+      width: 70px;
+      text-align: center;
+      font-size: 14px;
+    }
+    .volume-control {
+      width: 80px;
+      margin-left: 10px;
+    }
   </style>
 </head>
 <body class="flex justify-center items-center min-h-screen">
 
   <div class="container">
-    <h1 class="text-center text-3xl font-bold mb-6">🎵 Kho Nhạc 🎵</h1>
     <div id="playlist">
       <!-- Bài hát 1 -->
       <div class="song-card">
-        <img src="https://i.ytimg.com/vi/D7rm9t5S4uE/maxresdefault.jpg" alt="Song 1" class="song-img">
-        <div class="flex-1">
-          <h2 class="text-lg font-bold">Nơi Này Có Anh - Vavh</h2>
-          <div class="progress-bar"><div class="progress"></div></div>
-        </div>
         <button class="play-btn"><i class="fas fa-play"></i></button>
+        <div class="time">00:00 / 00:00</div>
+        <div class="progress-bar"><div class="progress"></div></div>
+        <input type="range" class="volume-control" min="0" max="1" step="0.01" value="1">
         <audio>
           <source src="https://military-merrie-tranteo777-3c17b2c8.koyeb.app/uploads/NOI%20NAY%20CO%20ANH%20VAVH.mp3" type="audio/mpeg">
         </audio>
@@ -86,12 +87,10 @@
 
       <!-- Bài hát 2 -->
       <div class="song-card">
-        <img src="https://i.ytimg.com/vi/3AtDnEC4zak/maxresdefault.jpg" alt="Song 2" class="song-img">
-        <div class="flex-1">
-          <h2 class="text-lg font-bold">NST #4</h2>
-          <div class="progress-bar"><div class="progress"></div></div>
-        </div>
         <button class="play-btn"><i class="fas fa-play"></i></button>
+        <div class="time">00:00 / 00:00</div>
+        <div class="progress-bar"><div class="progress"></div></div>
+        <input type="range" class="volume-control" min="0" max="1" step="0.01" value="1">
         <audio>
           <source src="https://military-merrie-tranteo777-3c17b2c8.koyeb.app/uploads/5_6285093740390389893.mp3" type="audio/mpeg">
         </audio>
@@ -99,12 +98,10 @@
 
       <!-- Bài hát 3 -->
       <div class="song-card">
-        <img src="https://i.ytimg.com/vi/L_jWHffIx5E/maxresdefault.jpg" alt="Song 3" class="song-img">
-        <div class="flex-1">
-          <h2 class="text-lg font-bold">HOUSELAK #1</h2>
-          <div class="progress-bar"><div class="progress"></div></div>
-        </div>
         <button class="play-btn"><i class="fas fa-play"></i></button>
+        <div class="time">00:00 / 00:00</div>
+        <div class="progress-bar"><div class="progress"></div></div>
+        <input type="range" class="volume-control" min="0" max="1" step="0.01" value="1">
         <audio>
           <source src="https://military-merrie-tranteo777-3c17b2c8.koyeb.app/uploads/5_6294074787589262501.mp3" type="audio/mpeg">
         </audio>
@@ -129,6 +126,8 @@
         const audio = song.querySelector("audio");
         const progressBar = song.querySelector(".progress-bar");
         const progress = song.querySelector(".progress");
+        const timeDisplay = song.querySelector(".time");
+        const volumeControl = song.querySelector(".volume-control");
 
         playBtn.addEventListener("click", () => {
           const isPlaying = !audio.paused;
@@ -153,6 +152,9 @@
         });
 
         audio.addEventListener("timeupdate", () => {
+          const currentTime = formatTime(audio.currentTime);
+          const duration = formatTime(audio.duration);
+          timeDisplay.textContent = `${currentTime} / ${duration}`;
           const percent = (audio.currentTime / audio.duration) * 100;
           progress.style.width = percent + "%";
         });
@@ -164,8 +166,19 @@
           audio.currentTime = newTime;
         });
 
+        volumeControl.addEventListener("input", () => {
+          audio.volume = volumeControl.value;
+        });
+
         audio.addEventListener("ended", playNextSong);
       });
+
+      function formatTime(seconds) {
+        if (isNaN(seconds)) return "00:00";
+        const min = Math.floor(seconds / 60);
+        const sec = Math.floor(seconds % 60);
+        return `${min}:${sec < 10 ? "0" : ""}${sec}`;
+      }
     });
   </script>
 
