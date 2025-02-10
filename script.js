@@ -9,6 +9,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const progress = song.querySelector(".progress");
     const timeDisplay = song.querySelector(".time");
 
+    // Hiển thị tổng thời gian khi nhạc tải xong
+    audio.addEventListener("loadedmetadata", () => {
+      let duration = formatTime(audio.duration);
+      timeDisplay.textContent = `00:00 / ${duration}`;
+    });
+
     playBtn.addEventListener("click", () => {
       if (audio.paused) {
         document.querySelectorAll("audio").forEach(a => a.pause());
@@ -33,20 +39,28 @@ document.addEventListener("DOMContentLoaded", function () {
       timeDisplay.textContent = `${currentTime} / ${duration}`;
     });
 
+    // Cho phép click để tua nhạc
     progressBar.addEventListener("click", (e) => {
       const rect = progressBar.getBoundingClientRect();
       const clickX = e.clientX - rect.left;
-      audio.currentTime = (clickX / rect.width) * audio.duration;
+      const newTime = (clickX / rect.width) * audio.duration;
+      audio.currentTime = newTime;
     });
 
+    // Format thời gian chuẩn
     function formatTime(seconds) {
       let h = Math.floor(seconds / 3600);
       let m = Math.floor((seconds % 3600) / 60);
       let s = Math.floor(seconds % 60);
-      return `${h}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+      if (h > 0) {
+        return `${h}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+      } else {
+        return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+      }
     }
   });
 
+  // Điều chỉnh âm lượng với thanh trượt
   volumeSlider.addEventListener("input", (e) => {
     document.querySelectorAll("audio").forEach(a => a.volume = e.target.value);
   });
