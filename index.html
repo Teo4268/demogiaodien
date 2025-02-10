@@ -24,7 +24,12 @@
       border-radius: 12px;
       padding: 15px;
       margin-bottom: 15px;
-      transition: 0.2s;
+      transition: 0.3s ease;
+    }
+    .song-card.playing {
+      background: #ff4b2b;
+      transform: scale(1.05);
+      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
     }
     .progress-bar {
       width: 100%;
@@ -32,21 +37,28 @@
       background: rgba(255, 255, 255, 0.2);
       border-radius: 5px;
       cursor: pointer;
+      margin: 5px 0;
     }
     .progress {
       height: 100%;
-      background: #ff4b2b;
+      background: white;
       width: 0%;
+      transition: width 0.1s linear;
     }
     .play-btn {
-      background-color: #ff416c;
-      color: white;
+      background-color: white;
+      color: black;
       border: none;
       border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      font-size: 18px;
+      width: 45px;
+      height: 45px;
+      font-size: 20px;
       cursor: pointer;
+      margin-left: 15px;
+      transition: transform 0.2s ease-in-out;
+    }
+    .play-btn:hover {
+      transform: scale(1.1);
     }
     .volume-widget {
       position: fixed;
@@ -106,12 +118,15 @@
           if (audio.paused) {
             document.querySelectorAll("audio").forEach(a => a.pause());
             document.querySelectorAll(".play-btn").forEach(btn => btn.innerHTML = '<i class="fas fa-play"></i>');
+            document.querySelectorAll(".song-card").forEach(card => card.classList.remove("playing"));
 
             audio.play();
             playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            song.classList.add("playing");
           } else {
             audio.pause();
             playBtn.innerHTML = '<i class="fas fa-play"></i>';
+            song.classList.remove("playing");
           }
         });
 
