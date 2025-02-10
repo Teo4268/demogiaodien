@@ -4,85 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Trình phát nhạc</title>
+  <link rel="stylesheet" href="style.css">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
-  <style>
-    body {
-      background-color: #121212;
-      color: white;
-      font-family: Arial, sans-serif;
-    }
-    .container {
-      max-width: 800px;
-      margin: auto;
-      padding: 20px;
-    }
-    .song-card {
-      display: flex;
-      align-items: center;
-      background: #1a1a1a;
-      border-radius: 12px;
-      padding: 15px;
-      margin-bottom: 15px;
-      transition: 0.3s ease;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-    }
-    .song-card.playing {
-      background: #222;
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
-      transform: scale(1.05);
-    }
-    .progress-bar {
-      width: 100%;
-      height: 6px;
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 5px;
-      cursor: pointer;
-      margin: 5px 0;
-    }
-    .progress {
-      height: 100%;
-      background: white;
-      width: 0%;
-      transition: width 0.1s linear;
-    }
-    .play-btn {
-      background-color: white;
-      color: black;
-      border: none;
-      border-radius: 50%;
-      width: 45px;
-      height: 45px;
-      font-size: 20px;
-      cursor: pointer;
-      margin-left: 15px;
-      transition: transform 0.2s ease-in-out;
-    }
-    .play-btn:hover {
-      transform: scale(1.1);
-    }
-    .volume-widget {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      align-items: center;
-      background: #1e1e1e;
-      padding: 10px 15px;
-      border-radius: 20px;
-      box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
-    }
-    .volume-slider {
-      width: 100px;
-      margin-left: 10px;
-    }
-  </style>
 </head>
 <body>
 
   <div class="container">
     <div id="playlist">
+      <!-- 🟢 DANH SÁCH BÀI HÁT - THÊM NHẠC TẠI ĐÂY -->
       <div class="song-card">
         <div class="flex-1">
           <h2 class="text-lg font-bold">Nơi Này Có Anh - Vavh</h2>
@@ -103,22 +33,9 @@
         </div>
         <button class="play-btn"><i class="fas fa-play"></i></button>
         <audio>
-          <source src="https://storage.googleapis.com/kagglesdsdata/datasets/6618770/10700382/5_6136665249803147003.mp3?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=gcp-kaggle-com%40kaggle-161607.iam.gserviceaccount.com%2F20250210%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20250210T045442Z&X-Goog-Expires=259200&X-Goog-SignedHeaders=host&X-Goog-Signature=8b26cbda470f54b249e43c419cf194d6252d05b5667cea2253609cf593ee75f5f1a1869d59fbfbb9652e9a8e8979f655069fa88cb6778e3d7b228daa4fe208129389380a22ed801a849246963d4754898afd415dd6678d637d743cbcf00379811b91acac7b51c37f0bf2383c918dd9db09fd02368330d2ff190be5184e116889f00a734973e0782828789737463092231c04a7763b5aef257b2b2a98907fa5639454fe341177aaa0500498e69fce58897c0b73c28c1f1d42f39085c892feedc587d6d16d6fa067d82d4ee1aa32732e067d4e2fe56c8bb489198f208fd55f01cc3c308feab68817c59b0088b9fcdd22d400ad0b80ee9b2de6425f35e8486178bd" type="audio/mpeg">
+          <source src="https://storage.googleapis.com/kagglesdsdata/datasets/6618770/10700382/5_6136665249803147003.mp3" type="audio/mpeg">
         </audio>
       </div>
-
-      <div class="song-card">
-        <div class="flex-1">
-          <h2 class="text-lg font-bold">Bài Hát 2</h2>
-          <div class="progress-bar"><div class="progress"></div></div>
-          <span class="time">00:00 / 00:00</span>
-        </div>
-        <button class="play-btn"><i class="fas fa-play"></i></button>
-        <audio>
-          <source src="https://storage.googleapis.com/kagglesdsdata/datasets/6618770/10700382/5_6152345415191628545.wav?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=gcp-kaggle-com%40kaggle-161607.iam.gserviceaccount.com%2F20250210%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20250210T045504Z&X-Goog-Expires=259200&X-Goog-SignedHeaders=host&X-Goog-Signature=315c26808ffd2b952b7a8aeeda7946a83b0c3fac83a0340faf75600c9535a474ec1f93494fd6f55e5873bfbf7f98e0ee2f276564831b4903dcc7cfcefbfc0763e5926779c61d8b403cfea2be5f1a0561a9772e0a0879d7e96187d709a52d70eb55e8e256a376673c66366a0fc414caef0225d5d2ef0b0323ea0693a2bf61e209dc199b38227fa2a464172cfe48833f8a521c0e5bbb7ae8b0ecce0feb0b82374dbb0f266e07da960684e6ebf2cdcbba4b2fd9ba1571a87ead2a6b19a5f470e28d58044ca54a1e9cecdd840640fe3b1f4ea767b9dca1cc4856c81cdff733257b6e2e17ab490867c2c47887470426951acc0d252446b3c634ae978efca8cb153a07" type="audio/wav">
-        </audio>
-      </div>
-
     </div>
   </div>
 
@@ -128,61 +45,7 @@
     <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="1">
   </div>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const songs = document.querySelectorAll(".song-card");
-      const volumeSlider = document.querySelector(".volume-slider");
-
-      songs.forEach((song) => {
-        const playBtn = song.querySelector(".play-btn");
-        const audio = song.querySelector("audio");
-        const progressBar = song.querySelector(".progress-bar");
-        const progress = song.querySelector(".progress");
-        const timeDisplay = song.querySelector(".time");
-
-        playBtn.addEventListener("click", () => {
-          if (audio.paused) {
-            document.querySelectorAll("audio").forEach(a => a.pause());
-            document.querySelectorAll(".play-btn").forEach(btn => btn.innerHTML = '<i class="fas fa-play"></i>');
-            document.querySelectorAll(".song-card").forEach(card => card.classList.remove("playing"));
-
-            audio.play();
-            playBtn.innerHTML = '<i class="fas fa-pause"></i>';
-            song.classList.add("playing");
-          } else {
-            audio.pause();
-            playBtn.innerHTML = '<i class="fas fa-play"></i>';
-            song.classList.remove("playing");
-          }
-        });
-
-        audio.addEventListener("timeupdate", () => {
-          const percent = (audio.currentTime / audio.duration) * 100;
-          progress.style.width = percent + "%";
-          let currentTime = formatTime(audio.currentTime);
-          let duration = formatTime(audio.duration);
-          timeDisplay.textContent = `${currentTime} / ${duration}`;
-        });
-
-        progressBar.addEventListener("click", (e) => {
-          const rect = progressBar.getBoundingClientRect();
-          const clickX = e.clientX - rect.left;
-          audio.currentTime = (clickX / rect.width) * audio.duration;
-        });
-
-        function formatTime(seconds) {
-          let h = Math.floor(seconds / 3600);
-          let m = Math.floor((seconds % 3600) / 60);
-          let s = Math.floor(seconds % 60);
-          return `${h}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
-        }
-      });
-
-      volumeSlider.addEventListener("input", (e) => {
-        document.querySelectorAll("audio").forEach(a => a.volume = e.target.value);
-      });
-    });
-  </script>
+  <script src="script.js"></script>
 
 </body>
 </html>
