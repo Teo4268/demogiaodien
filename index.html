@@ -20,16 +20,17 @@
     .song-card {
       display: flex;
       align-items: center;
-      background: #1e1e1e;
+      background: #1a1a1a;
       border-radius: 12px;
       padding: 15px;
       margin-bottom: 15px;
       transition: 0.3s ease;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
     }
     .song-card.playing {
-      background: #ff4b2b;
+      background: #222;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
       transform: scale(1.05);
-      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
     }
     .progress-bar {
       width: 100%;
@@ -93,6 +94,31 @@
           <source src="https://military-merrie-tranteo777-3c17b2c8.koyeb.app/uploads/NOI%20NAY%20CO%20ANH%20VAVH.mp3" type="audio/mpeg">
         </audio>
       </div>
+
+      <div class="song-card">
+        <div class="flex-1">
+          <h2 class="text-lg font-bold">Bài Hát 1</h2>
+          <div class="progress-bar"><div class="progress"></div></div>
+          <span class="time">00:00 / 00:00</span>
+        </div>
+        <button class="play-btn"><i class="fas fa-play"></i></button>
+        <audio>
+          <source src="https://storage.googleapis.com/kagglesdsdata/datasets/6618770/10700382/5_6136665249803147003.mp3" type="audio/mpeg">
+        </audio>
+      </div>
+
+      <div class="song-card">
+        <div class="flex-1">
+          <h2 class="text-lg font-bold">Bài Hát 2</h2>
+          <div class="progress-bar"><div class="progress"></div></div>
+          <span class="time">00:00 / 00:00</span>
+        </div>
+        <button class="play-btn"><i class="fas fa-play"></i></button>
+        <audio>
+          <source src="https://storage.googleapis.com/kagglesdsdata/datasets/6618770/10700382/5_6152345415191628545.wav" type="audio/wav">
+        </audio>
+      </div>
+
     </div>
   </div>
 
