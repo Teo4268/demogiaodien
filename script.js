@@ -10,10 +10,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const timeDisplay = song.querySelector(".time");
 
     // Hiển thị tổng thời gian khi nhạc tải xong
-    audio.addEventListener("loadedmetadata", () => {
-      let duration = formatTime(audio.duration);
-      timeDisplay.textContent = `00:00 / ${duration}`;
-    });
+    function updateTotalDuration() {
+      if (!isNaN(audio.duration)) {
+        timeDisplay.textContent = `00:00 / ${formatTime(audio.duration)}`;
+      }
+    }
+
+    audio.addEventListener("loadedmetadata", updateTotalDuration);
+    if (audio.readyState >= 1) updateTotalDuration(); // Hiển thị ngay khi trang load nếu file đã sẵn sàng
 
     playBtn.addEventListener("click", () => {
       if (audio.paused) {
