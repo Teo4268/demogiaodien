@@ -1,27 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kho Nhạc - Phát Nhạc Cực Mượt</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kho Nhạc 🎵</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       background-color: #121212;
       color: white;
       font-family: 'Roboto', sans-serif;
     }
-    .song-container {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 10px;
+    .container {
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
+    }
+    .song-card {
+      display: flex;
+      align-items: center;
+      background: #1e1e1e;
+      border-radius: 12px;
       padding: 10px;
+      margin-bottom: 15px;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-    .song-container:hover {
+    .song-card:hover {
       transform: scale(1.02);
       box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+    }
+    .song-img {
+      width: 60px;
+      height: 60px;
+      border-radius: 10px;
+      margin-right: 10px;
     }
     .progress-bar {
       width: 100%;
@@ -36,37 +50,63 @@
       background: linear-gradient(90deg, #ff416c, #ff4b2b);
       width: 0%;
     }
+    .play-btn {
+      background-color: #ff416c;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .play-btn:hover {
+      background-color: #ff4b2b;
+    }
   </style>
 </head>
 <body class="flex justify-center items-center min-h-screen">
-  <div class="container mx-auto p-4">
+
+  <div class="container">
     <h1 class="text-center text-3xl font-bold mb-6">🎵 Kho Nhạc 🎵</h1>
     <div id="playlist">
-      <!-- Bài hát -->
-      <div class="song-container mb-4 p-4">
-        <h2 class="text-lg font-bold">Nơi Này Có Anh - Vavh</h2>
-        <button class="play-btn text-white bg-gray-700 px-4 py-2 rounded mt-2"><i class="fas fa-play"></i></button>
-        <div class="progress-bar"><div class="progress"></div></div>
+      <!-- Bài hát 1 -->
+      <div class="song-card">
+        <img src="https://i.ytimg.com/vi/D7rm9t5S4uE/maxresdefault.jpg" alt="Song 1" class="song-img">
+        <div class="flex-1">
+          <h2 class="text-lg font-bold">Nơi Này Có Anh - Vavh</h2>
+          <div class="progress-bar"><div class="progress"></div></div>
+        </div>
+        <button class="play-btn"><i class="fas fa-play"></i></button>
         <audio>
-          <source src="https://military-merrie-tranteo777-3c17b2c8.koyeb.app/uploads/NOI%20NAY%20CO%20ANH%20VAVH.mp3" type="audio/mpeg" />
+          <source src="https://military-merrie-tranteo777-3c17b2c8.koyeb.app/uploads/NOI%20NAY%20CO%20ANH%20VAVH.mp3" type="audio/mpeg">
         </audio>
       </div>
 
-      <div class="song-container mb-4 p-4">
-        <h2 class="text-lg font-bold">NST #4</h2>
-        <button class="play-btn text-white bg-gray-700 px-4 py-2 rounded mt-2"><i class="fas fa-play"></i></button>
-        <div class="progress-bar"><div class="progress"></div></div>
+      <!-- Bài hát 2 -->
+      <div class="song-card">
+        <img src="https://i.ytimg.com/vi/3AtDnEC4zak/maxresdefault.jpg" alt="Song 2" class="song-img">
+        <div class="flex-1">
+          <h2 class="text-lg font-bold">NST #4</h2>
+          <div class="progress-bar"><div class="progress"></div></div>
+        </div>
+        <button class="play-btn"><i class="fas fa-play"></i></button>
         <audio>
-          <source src="https://military-merrie-tranteo777-3c17b2c8.koyeb.app/uploads/5_6285093740390389893.mp3" type="audio/mpeg" />
+          <source src="https://military-merrie-tranteo777-3c17b2c8.koyeb.app/uploads/5_6285093740390389893.mp3" type="audio/mpeg">
         </audio>
       </div>
 
-      <div class="song-container mb-4 p-4">
-        <h2 class="text-lg font-bold">HOUSELAK #1</h2>
-        <button class="play-btn text-white bg-gray-700 px-4 py-2 rounded mt-2"><i class="fas fa-play"></i></button>
-        <div class="progress-bar"><div class="progress"></div></div>
+      <!-- Bài hát 3 -->
+      <div class="song-card">
+        <img src="https://i.ytimg.com/vi/L_jWHffIx5E/maxresdefault.jpg" alt="Song 3" class="song-img">
+        <div class="flex-1">
+          <h2 class="text-lg font-bold">HOUSELAK #1</h2>
+          <div class="progress-bar"><div class="progress"></div></div>
+        </div>
+        <button class="play-btn"><i class="fas fa-play"></i></button>
         <audio>
-          <source src="https://military-merrie-tranteo777-3c17b2c8.koyeb.app/uploads/5_6294074787589262501.mp3" type="audio/mpeg" />
+          <source src="https://military-merrie-tranteo777-3c17b2c8.koyeb.app/uploads/5_6294074787589262501.mp3" type="audio/mpeg">
         </audio>
       </div>
     </div>
@@ -74,7 +114,7 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      const songs = document.querySelectorAll(".song-container");
+      const songs = document.querySelectorAll(".song-card");
       let currentAudioIndex = 0;
 
       function playNextSong() {
@@ -93,7 +133,6 @@
         playBtn.addEventListener("click", () => {
           const isPlaying = !audio.paused;
           
-          // Dừng tất cả các bài khác khi phát một bài mới
           songs.forEach((otherSong, otherIndex) => {
             const otherAudio = otherSong.querySelector("audio");
             const otherBtn = otherSong.querySelector(".play-btn");
@@ -113,13 +152,11 @@
           }
         });
 
-        // Cập nhật thanh tiến trình khi phát
         audio.addEventListener("timeupdate", () => {
           const percent = (audio.currentTime / audio.duration) * 100;
           progress.style.width = percent + "%";
         });
 
-        // Nhảy đến vị trí click trên thanh tiến trình
         progressBar.addEventListener("click", (e) => {
           const rect = progressBar.getBoundingClientRect();
           const clickX = e.clientX - rect.left;
@@ -127,22 +164,10 @@
           audio.currentTime = newTime;
         });
 
-        // Tự động phát bài tiếp theo
         audio.addEventListener("ended", playNextSong);
       });
-
-      // Lưu vị trí phát nhạc
-      window.addEventListener("beforeunload", () => {
-        localStorage.setItem("lastPlayedIndex", currentAudioIndex);
-      });
-
-      // Khôi phục trạng thái phát nhạc sau khi tải lại trang
-      const lastPlayedIndex = localStorage.getItem("lastPlayedIndex");
-      if (lastPlayedIndex !== null) {
-        currentAudioIndex = parseInt(lastPlayedIndex);
-        songs[currentAudioIndex].querySelector(".play-btn").click();
-      }
     });
   </script>
+
 </body>
 </html>
